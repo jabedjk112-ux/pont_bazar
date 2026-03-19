@@ -1,0 +1,17 @@
+
+***
+
+## ৪. GitHub–এ আপলোড করার কমান্ড (তোমার লোকাল থেকে)
+
+ধরি GitHub–এ তুমি আগে `pont_bazar` নামে একটি খালি repo বানিয়েছ, আর সেখানে `https://github.com/yourname/pont_bazar.git` লিংক আছে।
+
+টার্মিনালে প্রোজেক্ট ফোল্ডারে গিয়ে:
+
+```bash
+git init
+git add .
+git commit -m "Initial Pont Bazar Flutter app"
+
+git branch -M main
+git remote add origin https://github.com/yourname/pont_bazar.git
+git push -u origin main
