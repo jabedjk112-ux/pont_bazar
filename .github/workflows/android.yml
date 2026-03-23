@@ -7,11 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
+      
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
@@ -24,17 +22,17 @@ jobs:
           flutter-version: '3.x'
           channel: 'stable'
 
-      - name: Flutter version check
-        run: flutter --version
-
       - name: Install dependencies
+        # আপনার ফোল্ডারের নাম 'pont_bazar' হলে এখানে সেটি দেওয়া হয়েছে
         run: flutter pub get
+        working-directory: .
 
       - name: Build APK
-        run: flutter build apk --release
+        run: flutter build apk --debug
+        working-directory: .
 
-      - name: Upload APK
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: pont-bazar-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
