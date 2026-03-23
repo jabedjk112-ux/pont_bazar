@@ -19,17 +19,22 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.x' # আপনার প্রজেক্টের ফ্লাটার ভার্সন অনুযায়ী অটোমেটিক কাজ করবে
+          flutter-version: '3.x'
           channel: 'stable'
 
       - name: Install dependencies
+        # এখানে working-directory হিসেবে আপনার ফোল্ডারের নাম দিতে হবে
         run: flutter pub get
+        working-directory: ./ # যদি কোডগুলো সরাসরি মেইন ডিরেক্টরিতে থাকে
 
       - name: Build APK
+        # এখানেও working-directory যোগ করতে হবে
         run: flutter build apk --debug
+        working-directory: ./
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: pont-bazar-apk
+          # পাথে আপনার ফোল্ডারের নামসহ লোকেশন দিতে হবে
           path: build/app/outputs/flutter-apk/app-debug.apk
